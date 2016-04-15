@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="sv">
+<head>
+      <meta charset="utf-8">
+       <title>skriva blogginlägg</title>
+       <link rel="stylesheet" herf="style.css">
+    </head>
+<?php
+ // ta emot data från formuläret
+  $rubrik = $_post ['rubrik'];
+  $inlagg = $_post ['inlagg'];
+
+//databasuppgifter
+  $host = 'localhost';
+  $user = 'waleed_user';
+  $pass = 'waleed_pass';
+  $database = 'waleed_db';
+
+//anslut till databasen
+$conn = new mysqli($host, $user, $pass, $database);
+
+//om någonting går fel. avsluta med felmeddelande
+if ($conn->connect_error)
+die("någonting blev fel": . $conn->connect_error);
+
+//vårt sql-kommando
+ $result = "insert into blogg (rubrik, inlagg) values ('$rubrik', '$inlagg')";
+
+//kör sql-kommandot
+$result = $conn->query($sql);
+
+//gick det bra eller inte?
+
+if (!$result)
+    die("kunde inte spara inlägg: " . $conn->error);
+ eles
+  echo "<h3>ditt inlägg är registrerat</h3>";
+//stäng ned databasanslutningen
+$conn->close();
+ ?>
+</body>
+</html>
